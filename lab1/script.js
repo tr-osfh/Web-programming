@@ -143,6 +143,8 @@ function checkBlur() {
   }
 }
 
+let start = performance.now();
+
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".x-button").forEach((button) => {
     button.addEventListener("click", function () {
@@ -183,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function send(x, y, r) {
+  start = performance.now();
   const data = JSON.stringify({ x: x.value, y: y.value, r: r.value });
 
   console.log(data);
@@ -214,6 +217,9 @@ function showResponse(response) {
         <td>${response.time}</td>
         <td>${
             response.result
+        }</td>
+                <td>${
+            start - performance.now()
         }</td>
     
     `
