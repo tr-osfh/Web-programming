@@ -83,8 +83,8 @@ public class Main {
 
     private static boolean analyzeCords(int x, float y, float r) {
         return (x >= 0 && y >= 0 && x <= r && y <= r) ||
-                (Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow(r, 2)) ||
-                (x <= 0 && y <= 0 && (x / (-r / 2.0f) + (y / (-r / 2.0f)) <= 1));
+                (x <= 0 && y >= 0 && (Math.pow(x, 2) + Math.pow(y, 2) <= Math.pow(r, 2))) ||
+                (x <= 0 && y <= 0 && (y >= -1 * x - r));
     }
 
     public static boolean validate(int x, float y, float r) {
