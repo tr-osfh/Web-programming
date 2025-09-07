@@ -213,7 +213,7 @@ function showResponse(response) {
         <td>${response.r}</td>
         <td>${response.time}</td>
         <td>${
-            response.result == "true" ? "Hell yeah" : "Hell nah"
+            response.result == "true" ? "+" : "-"
         }</td>
     
     `
