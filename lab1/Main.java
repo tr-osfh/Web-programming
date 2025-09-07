@@ -15,36 +15,41 @@ public class Main {
                 System.out.println();
 
                 String method = FCGIInterface.request.params.getProperty("REQUEST_METHOD");
-                if ("GET".equals(method)) {
-                    String queryString = FCGIInterface.request.params.getProperty("QUERY_STRING");
-
-                    if (queryString != null && !queryString.trim().isEmpty()) {
-                        LinkedHashMap<String, String> map = getValues(queryString);
-
-                        if (map.containsKey("x") && map.containsKey("y") && map.containsKey("r")) {
-                            try {
-                                int x = Integer.parseInt(map.get("x"));
-                                float y = Float.parseFloat(map.get("y"));
-                                float r = Float.parseFloat(map.get("r"));
-
-                                if (validate(x, y, r)) {
-                                    boolean result = analyzeCords(x, y, r);
-                                    System.out.println(resp(String.valueOf(x), String.valueOf(y), String.valueOf(r), result));
-                                } else {
-                                    System.out.println("{\"error\": \"Invalid parameters: validation failed\"}");
-                                }
-                            } catch (NumberFormatException e) {
-                                System.out.println("{\"error\": \"Number format exception: " + e.getMessage() + "\"}");
-                            }
-                        } else {
-                            System.out.println("{\"error\": \"Missing parameters. Required: x, y, r\"}");
-                        }
-                    } else {
-                        System.out.println("{\"error\": \"Empty query string\"}");
-                    }
-                } else {
-                    System.out.println("{\"error\": \"Method not allowed. Use GET\"}");
+                if (!"GET".equals(method)) {
+                    System.out.println("{\"error\": \"Only GET method is supported\"}");
+                    continue;
                 }
+
+                String queryString = FCGIInterface.request.params.getProperty("QUERY_STRING");
+                if (queryString == null || queryString.trim().isEmpty()) {
+                    System.out.println("{\"error\": \"Empty query string\"}");
+                    continue;
+                }
+
+                LinkedHashMap<String, String> map = getValues(queryString);
+
+                if (!map.containsKey("x") || !map.containsKey("y") || !map.containsKey("r")) {
+                    System.out.println("{\"error\": \"Missing parameters. Required: x, y, r\"}");
+                    continue;
+                }
+
+                try {
+                    int x = Integer.parseInt(map.get("x"));
+                    float y = Float.parseFloat(map.get("y"));
+                    float r = Float.parseFloat(map.get("r"));
+
+                    if (!validate(x, y, r)) {
+                        System.out.println("{\"error\": \"Invalid parameters: validation failed\"}");
+                        continue;
+                    }
+
+                    boolean result = analyzeCords(x, y, r);
+                    System.out.println(resp(String.valueOf(x), String.valueOf(y), String.valueOf(r), result));
+
+                } catch (NumberFormatException e) {
+                    System.out.println("{\"error\": \"Number format exception\"}");
+                }
+
             } catch (Exception e) {
                 System.out.println("{\"error\": \"Server error: " + e.getMessage() + "\"}");
             }
