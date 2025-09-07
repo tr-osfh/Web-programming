@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ЛабаРаз</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <th colspan="2">
+                <div class="header">
+                <h1>Лабараторная работа НОМЕР ОДИН</h1>
+                <h2>Красногорский Тимофей, Р3220 <br>Вариант 2006</h2>
+                </div>
+
+            </th>
+        </tr>
+
+        <tr>
+            <td width="30%" style="vertical-align: top; padding: 20px;">
+                <div class="graph">
+                    <svg width="400" height="400">
+
+
+                    <circle cx="200" cy="200" r="120" style="fill:blue;fill-opacity:0.1" />
+                    <polygon points="200,200 0,200 0,400 400,400 400,0 200,0" style="fill:white" />
+                    <rect x="200" y="80" width="120" height="120" style="fill:blue;fill-opacity:0.1" />
+                    <polygon points="200,260 200,200 140,200" style="fill:blue;fill-opacity:0.1" />
+
+                    <text x="125" y="190">-R/2</text>
+                    <text x="315" y="190">R</text>
+                    <text x="250" y="190">R/2</text>
+                    <text x="72" y="190">-R</text>
+
+                    <text x="210" y="143">R/2</text>
+                    <text x="210" y="325">-R</text>
+                    <text x="210" y="265">-R/2</text>
+                    <text x="210" y="83">R</text>
+
+                    <text x="210" y="50">y</text>
+                    <text x="350" y="190">x</text>
+
+
+
+                    <!-- Оси -->
+                    <line x1="200" y1="50" x2="200" y2="350" stroke="black" />
+                    <line x1="50" y1="200" x2="350" y2="200" stroke="black" />
+
+                    <line x1="350" y1="200" x2="330" y2="205" stroke="black" />
+                    <line x1="350" y1="200" x2="330" y2="195" stroke="black" />
+
+                    <line x1="200" y1="50" x2="195" y2="70" stroke="black" />
+                    <line x1="200" y1="50" x2="205" y2="70" stroke="black" />
+
+
+                    <!-- Rx -->
+                    <line x1="80" y1="195" x2="80" y2="205" stroke="black" />
+                    <line x1="320" y1="195" x2="320" y2="205" stroke="black" />
+
+                    <!-- R/2x -->
+                    <line x1="140" y1="195" x2="140" y2="205" stroke="black" />
+                    <line x1="260" y1="195" x2="260" y2="205" stroke="black" />
+
+                    <!-- Ry -->
+                    <line x1="195" y1="80" x2="205" y2="80" stroke="black" />
+                    <line x1="195" y1="320" x2="205" y2="320" stroke="black" />
+
+                    <!-- R/2y -->
+                    <line x1="195" y1="140" x2="205" y2="140" stroke="black" />
+                    <line x1="195" y1="260" x2="205" y2="260" stroke="black" />
+                    </svg>
+                </div>
+
+                <input type="hidden" id="selected-x" name="x">
+                <input type="hidden" id="selected-r" name="r">
+
+                <div id="form-error" class="form-error" style="display: none;"></div>
+
+                <form id="coordinates">
+                    <div class="user-input">
+                        <label>Координата X:</label>
+                        <table id="x-buttons" class="buttons">
+                            <tr>
+                                <th><button type="button" class="x-button" value="-5">-5</button></th>
+                                <th><button type="button" class="x-button" value="-4">-4</button></th>
+                                <th><button type="button" class="x-button" value="-3">-3</button></th>
+                                <th><button type="button" class="x-button" value="-2">-2</button></th>
+                                <th><button type="button" class="x-button" value="-1">-1</button></th>
+                                <th><button type="button" class="x-button" value="0">0</button></th>
+                                <th><button type="button" class="x-button" value="1">1</button></th>
+                                <th><button type="button" class="x-button" value="2">2</button></th>
+                                <th><button type="button" class="x-button" value="3">3</button></th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="user-input">
+                        <label>Координата Y:</label>
+                        <div>
+                            <input type="text" id="y" name="y" placeholder="-3...5">
+                            <div id="y-error" class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="user-input">
+                        <label>Параметр R:</label>
+                        <table id="r-buttons" class="buttons">
+                            <tr>
+                                <th><button type="button" class="r-button" value="1">1</button></th>
+                                <th><button type="button" class="r-button" value="1.5">1.5</button></th>
+                                <th><button type="button" class="r-button" value="2">2</button></th>
+                                <th><button type="button" class="r-button" value="2.5">2.5</button></th>
+                                <th><button type="button" class="r-button" value="3">3</button></th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="user-input">
+                        <input type="submit" class="data-button" value="Отправить данные">
+                        <input type="reset" class="data-button" value="Сбросить данные">
+                    </div>
+                </form>
+            </td>
+
+            <td width="70%" style="vertical-align: top; padding: 20px;">
+                <div class="table">
+                    <table id="result_table" cellspacing="6" cellpadding="15" width="100%">
+                        <caption><b>Результаты</b></caption>
+                        <tr>
+                            <th>Координата X</th>
+                            <th>Координата Y</th>
+                            <th>Параметр R</th>
+                            <th>Нынешнее время</th>
+                            <th>Факт попадания в область</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
