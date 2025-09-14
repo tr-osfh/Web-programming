@@ -88,12 +88,32 @@ function validate(event) {
 
   let isValid = true;
 
+let avaliableX = ["-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3"];
+let avaliableR = ["1", "1.5", "2", "2.5", "3"];
+
+
+
+
   if (!xSelected) {
     formError.textContent += "Выберите координату X!\n";
-
     document.getElementById("x-buttons").classList.add("error");
     isValid = false;
-  }
+  } else if(!avaliableX.includes(xSelected)){
+    formError.textContent += "Недопустимое значение X!\n"
+    document.getElementById("x-buttons").classList.add("error");
+    isValid = false;
+}
+
+  if (!rSelected) {
+    formError.textContent += "Выберите параметр R!\n";
+    isValid = false;
+
+    document.getElementById("r-buttons").classList.add("error");
+  } else if(!avaliableR.includes(rSelected)){
+    formError.textContent += "Недопустимое значение R!\n"
+    document.getElementById("r-buttons").classList.add("error");
+    isValid = false;
+}
 
   let yInput = document.getElementById("y");
   let validY = validateY(true);
@@ -114,13 +134,6 @@ function validate(event) {
       isValid = false;
     }
     isValid = false;
-  }
-
-  if (!rSelected) {
-    formError.textContent += "Выберите параметр R!\n";
-    isValid = false;
-
-    document.getElementById("r-buttons").classList.add("error");
   }
 
   if (!isValid) {
@@ -190,7 +203,7 @@ function send(x, y, r) {
 
   console.log(data);
   fetch(
-    `http://localhost:13121/fcgi-bin/webLab1.jar?x=${x.value}&y=${y.value}&r=${r.value}`,
+    getLink(x, y, r),
     {
       method: "GET",
     }
@@ -215,13 +228,8 @@ function showResponse(response) {
         <td>${response.y}</td>
         <td>${response.r}</td>
         <td>${response.time}</td>
-        <td>${
-            response.result
-        }</td>
-                <td>${
-            start - performance.now()
-        }</td>
-    
+        <td>${(performance.now() - start).toFixed(2)} мс</td>
+        <td>${response.result}</td>
     `
 
     resultTable.appendChild(newRow);
