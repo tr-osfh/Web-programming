@@ -205,6 +205,7 @@ function send(x, y, r) {
   fetch(
     getLink(x, y, r),
     {
+        mode: "cors",
       method: "GET",
     }
   ).then((response) => {

@@ -11,14 +11,27 @@ public class Main {
         FCGIInterface fcgi = new FCGIInterface();
         while (fcgi.FCGIaccept() >= 0) {
             try {
+                String method = FCGIInterface.request.params.getProperty("REQUEST_METHOD");
+
+                if ("OPTIONS".equals(method)) {
+                    System.out.println("Access-Control-Allow-Origin: *");
+                    System.out.println("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+                    System.out.println("Access-Control-Allow-Headers: Content-Type");
+                    System.out.println("Content-Type: text/plain");
+                    System.out.println();
+                    System.out.println("OK");
+                    continue;
+                }
+
+                System.out.println("Access-Control-Allow-Origin: *");
                 System.out.println("Content-Type: application/json; charset=utf-8");
                 System.out.println();
 
-                String method = FCGIInterface.request.params.getProperty("REQUEST_METHOD");
                 if (!"GET".equals(method)) {
                     System.out.println("{\"error\": \"Only GET method is supported\"}");
                     continue;
                 }
+
 
                 String queryString = FCGIInterface.request.params.getProperty("QUERY_STRING");
                 if (queryString == null || queryString.trim().isEmpty()) {
