@@ -99,17 +99,60 @@ body {
 }
 
 .data-button {
+    border-radius: 10px;
     padding: 10px 15px;
     background-color: #e0e0e0;
     border: 1px solid #ccc;
 }
 
 .data-button[type="submit"] {
+    transition: .3s ease;
+    border-radius: 10px;
     background-color: rgb(129, 127, 255);
     color: white;
+    box-shadow: 0 5px 0 #45458e;
 }
 
+.data-button[type="submit"]:hover{
+    box-shadow: none;
+}
+.data-button[type="submit"]:active {
+    color: #817FFFFF;
+}
+
+
+
 .data-button[type="reset"] {
+    transition: .3s ease;
+    border-radius: 10px;
     background-color: #ff6b6b;
     color: white;
+    box-shadow: 0 5px 0 #8a0000;
+}
+
+.data-button[type="reset"]:hover{
+    box-shadow: none;
+}
+.data-button[type="reset"]:active {
+    color: #ff6b6b;
+}
+
+
+
+.deleteBtn{
+    margin-left: 50px;
+    border-radius: 10px;
+    transition: .3s ease;
+    background-color: rgb(129, 127, 255);
+    color: white;
+    box-shadow: 0 5px 0 #45458e;
+}
+
+.deleteBtn:hover {
+    background-color: red;
+    box-shadow: none;
+}
+
+.deleteBtn:active {
+    color: red;
 }

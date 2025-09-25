@@ -186,6 +186,14 @@ document.addEventListener("DOMContentLoaded", function () {
       validate(event);
     });
 
+    document
+        .getElementById("deleteCookiesBtn")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            deleteCookie(COOKIE_KEY);
+            document.getElementById("result_table").innerHTML = "";
+        });
+
   document.getElementById("y").addEventListener("blur", function () {
     checkBlur();
   });
@@ -195,6 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", resetForm);
 
   formWasSubmitted = false;
+
+    loadTableFromCookie();
 });
 
 function send(x, y, r) {
@@ -233,5 +243,101 @@ function showResponse(response) {
         <td>${response.result}</td>
     `
 
-    resultTable.appendChild(newRow);
+    if (resultTable.firstChild) {
+        resultTable.insertBefore(newRow, resultTable.firstChild);
+    } else {
+        resultTable.appendChild(newRow);
+    }
+
+    saveTableToCookie();
+}
+
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(nameEQ) === 0) {
+            const cookieValue = c.substring(nameEQ.length, c.length);
+            try {
+                return JSON.parse(decodeURIComponent(cookieValue));
+            } catch (e) {
+                console.error("Error parsing cookie:", e);
+                return [];
+            }
+        }
+    }
+    return [];
+}
+
+
+
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) + ";" + expires + ";path=/";
+}
+
+
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+}
+
+
+const COOKIE_KEY = 'savedResults';
+
+
+function saveTableToCookie() {
+    const resultTable = document.getElementById("result_table");
+    const rows = resultTable.querySelectorAll("tr");
+    const tableData = [];
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].querySelectorAll("td");
+        if (cells.length === 6) {
+            tableData.push({
+                x: cells[0].textContent,
+                y: cells[1].textContent,
+                r: cells[2].textContent,
+                time: cells[3].textContent,
+                executionTime: cells[4].textContent,
+                result: cells[5].textContent
+            });
+        }
+    }
+
+    setCookie(COOKIE_KEY, tableData, 30);
+    console.log('Таблица сохранена в куки');
+}
+
+
+
+function loadTableFromCookie() {
+    const tableData = getCookie(COOKIE_KEY);
+
+    if (tableData && tableData.length > 0) {
+        const resultTable = document.getElementById("result_table");
+
+        while (resultTable.rows.length > 1) {
+            resultTable.deleteRow(1);
+        }
+
+        tableData.forEach(rowData => {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${rowData.x}</td>
+                <td>${rowData.y}</td>
+                <td>${rowData.r}</td>
+                <td>${rowData.time}</td>
+                <td>${rowData.executionTime}</td>
+                <td>${rowData.result}</td>
+            `;
+            resultTable.appendChild(newRow);
+        });
+
+        console.log('Таблица загружена из куки:', tableData.length, 'строк');
+    }
 }
