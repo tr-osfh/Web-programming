@@ -235,12 +235,12 @@ function showResponse(response) {
   const newRow = document.createElement("tr");
 
   newRow.innerHTML = `
-        <td>${response.x}</td>
-        <td>${response.y}</td>
-        <td>${response.r}</td>
-        <td>${response.time}</td>
-        <td>${(performance.now() - start).toFixed(2)} мс</td>
-        <td>${response.result}</td>
+        <td width="15%">${response.x}</td>
+        <td width="15%">${response.y}</td>
+        <td width="10%">${response.r}</td>
+        <td width="25%">${response.time}</td>
+        <td width="15%">${(performance.now() - start).toFixed(2)} мс</td>
+        <td width="20%">${response.result}</td>
     `
 
     if (resultTable.firstChild) {
@@ -328,12 +328,12 @@ function loadTableFromCookie() {
         tableData.forEach(rowData => {
             const newRow = document.createElement("tr");
             newRow.innerHTML = `
-                <td>${rowData.x}</td>
-                <td>${rowData.y}</td>
-                <td>${rowData.r}</td>
-                <td>${rowData.time}</td>
-                <td>${rowData.executionTime}</td>
-                <td>${rowData.result}</td>
+                <td width="15%">${rowData.x}</td>
+                <td width="15%">${rowData.y}</td>
+                <td width="10%">${rowData.r}</td>
+                <td width="25%">${rowData.time}</td>
+                <td width="15%">${rowData.executionTime}</td>
+                <td width="20%">${rowData.result}</td>
             `;
             resultTable.appendChild(newRow);
         });
