@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:outputStylesheet name="css/main.css"/>
+<h:head>
+    <title>Главная, Лаба 3</title>
+    <h:outputScript name="scripts/main.js" />
+    <h:outputScript name="scripts/main-validator.js" />
+    <h:outputScript name="scripts/cookieManager.js" />
+</h:head>
+<h:body>
+    <h:form id="form">
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td width="30%" style="vertical-align: top; padding: 20px;">
+                    <div class="graph" id="area">
+                        <svg width="400" height="400" id="graph">
+                            <ellipse cx="200" cy="200" rx="100" ry="100" style="fill:blue;fill-opacity:0.1" />
+                            <polygon points="200,200 200,0 400,0 400,400 0,400 0,200" style="fill:white" />
+                            <rect x="200" y="100" width="50" height="100" style="fill:blue;fill-opacity:0.1" />
+                            <polygon points="200,200 200,300 250,200" style="fill:blue;fill-opacity:0.1" />
+
+                            <text x="133" y="190" class="graph-minus-r-2">-R/2</text>
+                            <text x="300" y="190" class="graph-r">R</text>
+                            <text x="240" y="190" class="graph-r-2">R/2</text>
+                            <text x="90" y="190" class="graph-minus-r">-R</text>
+
+                            <text x="210" y="155" class="graph-r-2">R/2</text>
+                            <text x="210" y="305" class="graph-minus-r">-R</text>
+                            <text x="210" y="253" class="graph-minus-r-2">-R/2</text>
+                            <text x="210" y="90" class="graph-r">R</text>
+
+                            <text x="210" y="50">y</text>
+                            <text x="350" y="190">x</text>
+
+                            <!-- Оси -->
+                            <line x1="200" y1="50" x2="200" y2="350" stroke="black" />
+                            <line x1="50" y1="200" x2="350" y2="200" stroke="black" />
+
+                            <line x1="350" y1="200" x2="330" y2="205" stroke="black" />
+                            <line x1="350" y1="200" x2="330" y2="195" stroke="black" />
+
+                            <line x1="200" y1="50" x2="195" y2="70" stroke="black" />
+                            <line x1="200" y1="50" x2="205" y2="70" stroke="black" />
+
+                            <!-- Rx -->
+                            <line x1="100" y1="195" x2="100" y2="205" stroke="black" />
+                            <line x1="300" y1="195" x2="300" y2="205" stroke="black" />
+
+                            <!-- R/2x -->
+                            <line x1="150" y1="195" x2="150" y2="205" stroke="black" />
+                            <line x1="250" y1="195" x2="250" y2="205" stroke="black" />
+
+                            <!-- Ry -->
+                            <line x1="195" y1="100" x2="205" y2="100" stroke="black" />
+                            <line x1="195" y1="300" x2="205" y2="300" stroke="black" />
+
+                            <!-- R/2y -->
+                            <line x1="195" y1="150" x2="205" y2="150" stroke="black" />
+                            <line x1="195" y1="250" x2="205" y2="250" stroke="black" />
+                        </svg>
+                    </div>
+
+                    <div id="error-message" class="error" style="display: none">123</div>
+
+                    <h:panelGroup id="x-group">
+                        <h3>Выберите координаты X:</h3>
+                        <div class="button-container">
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xMinus4" value="#{pointBean.xMinus4Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xMinus4" value="-4"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xMinus3" value="#{pointBean.xMinus3Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xMinus3" value="-3"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xMinus2" value="#{pointBean.xMinus2Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xMinus2" value="-2"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xMinus1" value="#{pointBean.xMinus1Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xMinus1" value="-1"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xZero" value="#{pointBean.xZeroSelected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xZero" value="0"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xPlus1" value="#{pointBean.xPlus1Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xPlus1" value="1"/>
+                            </div>
+
+                            <div style="max-width: 25px">
+                                <h:selectBooleanCheckbox id="xPlus2" value="#{pointBean.xPlus2Selected}">
+                                    <f:ajax listener="#{pointBean.onXSelectionChange}"/>
+                                </h:selectBooleanCheckbox>
+                                <h:outputLabel for="xPlus2" value="2"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup id="y-group">
+                        <h3>Выберите координату Y:</h3>
+                        <div class="button-container">
+                            <h:outputLabel for="y" value=""/>
+                            <h:inputText id="y" value="#{pointBean.y}"/>
+                            <h:message for="y" style="color: red"/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup id="r-group">
+                        <h3>Выберите параметр R:</h3>
+                        <div class="button-container">
+                            <p:outputLabel for="r" value=""/>
+                            <p:spinner id="r"
+                                       value="#{pointBean.r}"
+                                       min="#{1.0}" max="#{3.0}" stepFactor="0.5"
+                                       required="true">
+                                <p:ajax event="valueChange" execute="@this" oncomplete="changeR()"/>
+                            </p:spinner>
+                        </div>
+                    </h:panelGroup>
+                    <div class="buttons-controls">
+                    <h:commandButton value="Отправить" action="#{pointBean.submit}" styleClass="data-button" id="send" onclick="if (!validateForm()) { return false; }">
+                        <f:ajax execute="x-group y-group r-group" render="form:results-container"/>
+                    </h:commandButton>
+
+                    <h:commandButton value="Сбросить поля" action="#{pointBean.reset}" styleClass="delete-button" id="reset-fields">
+                        <f:ajax render="x-group y-group r-group" oncomplete="changeR()"/>
+                    </h:commandButton>
+                    <h:commandButton value="Стартовая страница" styleClass="data-button" style="margin-top: 10px; padding-left: 75px;
+padding-right: 70px;" id="go-to-main-button" action="toIndex" />
+                    </div>
+
+
+                    <h:inputHidden id="clickX" value="#{pointBean.clickX}" />
+                    <h:inputHidden id="clickY" value="#{pointBean.clickY}" />
+                    <h:inputHidden id="clickR" value="#{pointBean.clickR}" />
+
+                    <h:commandButton id="graphSubmitBtn"
+                                     action="#{pointBean.graphSubmit}"
+                                     style="display:none"
+                                     onclick="setTimeout(function(){ changeR(); }, 50)">
+                        <f:ajax execute="clickX clickY clickR" render=":form:results-container"/>
+                    </h:commandButton>
+
+                    <h:commandButton id="getAllHitsDB"
+                        action="#{pointBean.getAllHitsDB}"
+                        style="display:none">
+                        <f:ajax execute="@form" render="form:results-container"/>
+                    </h:commandButton>
+                </td>
+                <td width="70%" style="vertical-align: top; padding: 20px;">
+                    <div class="button-container">
+                        <h:commandButton value="Сбросить таблицу" action="#{pointBean.deleteAll}" styleClass="deleteBtn"
+                                         id="reset-table">
+                            <f:ajax execute="@form" render=":form:results-container"/>
+                        </h:commandButton>
+                        <h:commandButton value="Сохранить данные" action="#{pointBean.saveHits}" styleClass="deleteBtn"
+                                        id="save-table" style="display:none">
+                            <f:ajax execute="@form" render="form:results-container"/>
+                        </h:commandButton>
+                        <div id="save-delete-div" style="display:none">Данные сохранены</div>
+                    </div>
+                    <h:panelGroup id="results-container">
+                        <h3>Результаты проверок:</h3>
+                        <p:dataTable value="#{pointBean.allHits}" var="hit"
+                                     styleClass="results-table"
+                                     paginator="true"
+                                     rows="16"
+                                     paginatorPosition="top"
+                                     paginatorAlwaysVisible="false">
+                            <p:column headerText="Координата X">
+                                <h:outputText value="#{hit.x}"/>
+                            </p:column>
+
+                            <p:column headerText="Координата Y">
+                                <h:outputText value="#{hit.y}"/>
+                            </p:column>
+
+                            <p:column headerText="Радиус R">
+                                <h:outputText value="#{hit.r}"/>
+                            </p:column>
+
+                            <p:column headerText="Результат">
+                                <h:outputText value="#{hit.result ? 'Попадание' : 'Промах'}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:dataTable id="results-table" value="#{pointBean.allHits}" var="hit"
+                                     styleClass="results-table"
+                                     rowStyleClass="#{hit.savedInDb ? 'saved-row' : 'not-saved-row'}"
+                                        style="display: none">
+                            <p:column headerText="Координата X">
+                                <h:outputText value="#{hit.x}"/>
+                            </p:column>
+
+                            <p:column headerText="Координата Y">
+                                <h:outputText value="#{hit.y}"/>
+                            </p:column>
+
+                            <p:column headerText="Радиус R">
+                                <h:outputText value="#{hit.r}"/>
+                            </p:column>
+
+                            <p:column headerText="Результат">
+                                <h:outputText value="#{hit.result ? 'Попадание' : 'Промах'}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <h:messages id="messages" style="color: red"/>
+                    </h:panelGroup>
+                </td>
+            </tr>
+        </table>
+    </h:form>
+</h:body>
+</html>
