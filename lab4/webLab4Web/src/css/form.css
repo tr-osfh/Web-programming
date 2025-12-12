@@ -1,0 +1,87 @@
+.radio-group{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.label-for-param {
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.2em;
+    margin-bottom: 0.1em;
+}
+
+
+.data-button, .delete-button {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: .3s ease !important;
+    color: #000000 !important;
+}
+
+.data-button {
+    position: relative;
+    background-color: rgba(175, 255, 179, 0.56) !important;
+    box-shadow: 0 5px 0 rgba(0, 83, 3, 0.56);
+}
+
+.data-button:hover {
+    box-shadow: none;
+}
+
+
+.google-icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin-right: 5px;
+}
+
+.data-button:active {
+    background-color: rgba(175, 255, 179, 0.56) !important;
+}
+
+.delete-button {
+    color: white !important;
+    background-color: #ff6b6b  !important;
+    box-shadow: 0 5px 0 #8a0000;
+}
+
+.delete-button:hover {
+    background-color: red !important;
+    box-shadow: none;
+}
+
+.delete-button:active {
+    color: #ff6b6b;
+}
+
+
+.deleteBtn{
+    border-radius: 10px;
+    transition: .3s ease !important;
+    background-color: rgba(175, 255, 179, 0.56) !important;
+    color: black !important;
+    box-shadow: 0 5px 0 rgba(0, 83, 3, 0.56);
+}
+
+.deleteBtn:hover {
+    color: white !important;
+    background-color: red !important;
+    box-shadow: none;
+}
+
+.radio-input {
+    background-color: rgba(175, 255, 179, 0.56) !important;
+}
+
+.logout {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.error {
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.5em;
+    margin-bottom: 0.1em;
+    background-color: red !important;
+    color: white;
+}

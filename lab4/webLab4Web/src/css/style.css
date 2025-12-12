@@ -1,0 +1,44 @@
+@media (max-width: 647px) {
+    .form-cont {
+        position: relative;
+        left: 10%;
+        width: 80%;
+    }
+
+    .main-clock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+@media (min-width: 647px) {
+
+    .main-cont {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .form-cont {
+        position: relative;
+        left: 30%;
+        width: 300px;
+    }
+}
+
+@media (min-width: 1187px) {
+    .form-cont {
+        position: relative;
+        left: 20%;
+        width: 400px;
+    }
+    .main-clock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 30%;
+    }
+}

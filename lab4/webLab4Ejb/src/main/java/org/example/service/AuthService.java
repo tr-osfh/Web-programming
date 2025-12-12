@@ -116,8 +116,6 @@ public class AuthService {
 
         } catch (Exception e) {
             return new RegisterResponse(false, "Внутренняя ошибка сервера");
-        } finally {
-            System.out.println("Блок finally выполнен");
         }
     }
 

@@ -14,7 +14,6 @@ public class PollingSingleton {
 
     public synchronized void addResponse(AsyncResponse response) {
         waitingResponses.add(response);
-        System.out.println("Добавлен запрос. Всего: " + waitingResponses.size());
     }
 
     public synchronized void removeResponse(AsyncResponse response) {

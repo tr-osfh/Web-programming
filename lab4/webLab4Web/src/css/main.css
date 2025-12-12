@@ -1,0 +1,92 @@
+.layout {
+    display: grid;
+    gap: 20px;
+}
+
+
+@media (max-width: 647px) {
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "user"
+            "graph"
+            "form"
+            "table";
+    }
+}
+
+
+@media (min-width: 647px) and (max-width: 1187px) {
+    .layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "user user"
+            "graph form"
+            "table table";
+    }
+}
+
+@media (min-width: 1187px) {
+    .layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "user user"
+            "graph table"
+            "form table";
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+
+    .table {
+        margin-right: 2rem;
+    }
+
+    .user {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .graph {
+        margin-left: 2rem;
+    }
+
+    .form {
+        margin-left: 2rem;
+        position: absolute;
+        top: 600px;
+    }
+}
+
+
+.user  { grid-area: user; }
+.graph { grid-area: graph; }
+.form  { grid-area: form; max-width: 450px; }
+.table { grid-area: table; }
+
+
+
+.data-button, .delete-button {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: .3s ease !important;
+    color: #000000 !important;
+}
+
+.data-button {
+    background-color: rgba(175, 255, 179, 0.56) !important;
+    box-shadow: 0 5px 0 rgba(0, 83, 3, 0.56);
+}
+
+.data-button:hover {
+    box-shadow: none;
+}
+
+.delete-button:hover {
+    color: #ffffff !important;
+}
+
+.data-button:active {
+    background-color: rgba(175, 255, 179, 0.56) !important;
+}
