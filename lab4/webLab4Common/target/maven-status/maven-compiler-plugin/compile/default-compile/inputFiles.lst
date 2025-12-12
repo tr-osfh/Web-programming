@@ -1,0 +1,10 @@
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/Main.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/AuthRequest.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/AuthResponse.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/GoogleAuthRequest.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/GoogleAuthResponse.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/PointRequest.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/PointResponse.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/dto/RegisterResponse.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/entity/Point.java
+/Users/sch/Documents/proga/lab4/webLab4Common/src/main/java/org/example/entity/User.java
