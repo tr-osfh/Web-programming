@@ -61,7 +61,6 @@ function drawPoint(x, y, r, hit) {
 }
 
 function drawPoints(points) {
-    console.log('drawing')
     let r = document.getElementById(rId).value;
     if (r === "") r = 3;
 

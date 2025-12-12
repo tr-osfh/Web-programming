@@ -211,7 +211,6 @@ function send(x, y, r) {
   start = performance.now();
   const data = JSON.stringify({ x: x.value, y: y.value, r: r.value });
 
-  console.log(data);
   fetch(
     getLink(x, y, r),
     {
@@ -222,8 +221,6 @@ function send(x, y, r) {
     response
       .json()
       .then((result) => {
-        console.log("response accepted");
-        console.log(result);
         showResponse(result);
       })
       .catch((error) => console.error("Error:", error));
@@ -310,7 +307,6 @@ function saveTableToCookie() {
     }
 
     setCookie(COOKIE_KEY, tableData, 30);
-    console.log('Таблица сохранена в куки');
 }
 
 

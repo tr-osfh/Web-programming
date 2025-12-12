@@ -52,7 +52,6 @@ public class Point implements Serializable {
         List<HitResult> dataBaseList = unsavedList;
         Thread thread = new Thread(() -> {
             hitService.saveHits(dataBaseList);
-            System.out.println("Сохранено в БД!!!!!");
         });
         thread.start();
     }
@@ -65,7 +64,6 @@ public class Point implements Serializable {
         List<HitResult> dataBaseList = unsavedList;
         Thread thread = new Thread(() -> {
             hitService.saveHits(dataBaseList);
-            System.out.println("Сохранено в БД!!!!!");
         });
         thread.start();
     }

@@ -113,8 +113,6 @@ function handleGraphClick(event) {
     const userPointX = (((svgPoint.x - 200) / 100) * rValue).toFixed(2);
     const userPointY = (((200 - svgPoint.y) / 100) * rValue).toFixed(2);
 
-    console.log(`Клик по графику: x=${userPointX}, y=${userPointY}, r=${rValue}`);
-
     document.getElementById("form:clickX").value = userPointX;
     document.getElementById("form:clickY").value = userPointY;
     document.getElementById("form:clickR").value = rValue;
